@@ -1,0 +1,102 @@
+\documentclass[Main.tex]{subfiles}
+
+\begin{document}
+\section{Forma generale delle equazioni di Lagrange}
+\toc
+
+\subsection{Energia}
+
+Si cerca una formulazione generale dell'energia per un sistema descritto dalla lagrangiana
+\begin{gather}
+	\L = \K (q, \dot q,t) - \U(q,t) \\
+	\K= \K_2 (q, \dot q, t) + \K_1(q, \dot q ,t) + \K_0 (q,t)
+\end{gather}
+Riprendendo la definizione di Jacobi
+\begin{gather}
+	H(q,\dot q,t)= p \cdot \dot q - \L = \sum_{i=1}^L \pp{\L}{\dot q_i} \dot q_i - \L=\\
+	= \pp{\K}{\dot q} \cdot \dot q - \L
+\end{gather}
+Riprendendo il teorema di Eulero per le funzioni omogenee, cioè quelle $f(x), \ x \in \Rr^d$ tali che
+\begin{equation}
+	f(\lambda x) = \lambda ^s f(x) \ \ \ \forall \lambda >0
+\end{equation}
+Vale che 
+\begin{equation}
+	\Rightarrow x \cdot \nabla_x f(x) = s f(x)
+\end{equation}
+Utilizzando questo risultato per la funzione di Jacobi, si ha che $\K_2$ è una forma \emph{quadratica} allora si ha che 
+\begin{gather}
+	H=\pp{\K}{\dot q} \cdot \dot q - \L =\\
+	= \pp{\K_2}{\dot q} \cdot \dot q + \pp{\K_1}{\dot q} \cdot \dot q - (\K_2 + \K_1 + \K_0 - \U)=\\
+	=2 \K_2 + \cancel{\K_1} - \K_2 - \cancel{\K_1} - \K_0 + \U = \boxed{\K_2 - \K_0 + \U}
+\end{gather}
+
+
+\subsection{Forma della lagrangiana}
+Nel caso n-dimensionale la lagrangiana assume la forma
+\begin{gather}
+	\dd{}{t} \pp{\L}{\dot q_n} = \pp{\L}{q_n} \ \ \ \ (n=1,...L)\\
+	\iff \dd{}{t} \pp{\K}{\dot q_n} = \pp{\L}{q_n} 
+\end{gather}
+Il membro di sinistra è dato da
+\begin{gather}
+	\dd{}{t} \left[ \pp{\K}{\dot q_n} \right]= \dd{}{t} \left[\pp{\K_2}{\dot q_n} + \pp{\K_1}{\dot q_n}\right]=\\
+	=\dd{}{t} \left[\sum_{\ell=1}^L A_{n \ell} \dot q_\ell + B_n\right]=\\
+	= \sum_{\ell=1}^L \left( \sum_{m=1}^L \pp{A_{n \ell}}{ q_m} \dot q_m + \pp{A_{n\ell}}{t} \right) \dot q_\ell + \sum_{\ell=1}^L A_{n \ell} \ddot q_\ell + \sum_{\ell=1}^L \pp{B_n}{q_\ell}  \dot q_\ell + \pp{B_n}{t} \notag
+\end{gather}
+Siccome sono presenti sia la forma quadratica, che lineare che di grado 0, si può riordinare per ordini
+\begin{gather}
+	\sum_{\ell=1}^L A_{n \ell} \ddot q_\ell + \sum_{\ell,m=1}^L   \pp{A_{n \ell}}{ q_m} \dot q_m \dot q_\ell + \sum_{\ell=1}^L \left(\pp{B_n}{q_\ell}+\pp{A_{n\ell}}{t} \right) \dot q_\ell + \pp{B_n}{t}
+\end{gather}
+Il mebro di destra è dato da
+\begin{gather}
+	\pp{\L}{q_n} = \pp{\K_2}{q_n} + \pp{\K_1}{q_n} + \pp{\K_0}{q_n} - \pp{\U}{q_n}=\\
+	=\frac{1}{2} \sum_{\ell, m=1}^L  \pp{A_{\ell,m}}{q_n} \dot q_\ell \dot q_m + \sum _{\ell=1}^L \pp{B_\ell}{q_n} \dot q_\ell + \pp{\K_0}{q_n} - \pp{\U}{q_n}
+\end{gather}
+Nell'equazione totale, portando tutto a destra si ha 
+\begin{gather}
+	\sum_{\ell=1}^L A_{n\ell} \ddot q _\ell = - \sum _{\ell,m=1}^L  \underbrace{\left( \pp{A_{n \ell}}{q_m} - \frac{1}{2} \pp{A_{\ell m }}{q_n} \right)}_{:=\gamma_{n \ell}^n} \dot q_\ell \dot q_m +\\+ \sum_{\ell=1}^L \left( \underbrace{\pp{B_\ell}{q_n} - \pp{B_n}{q_\ell}}_{:=G_{n\ell}} - \pp{A_{n\ell}}{t} \right) \dot q_\ell - \pp{B_n}{t} - \pp{(\U- \K_0)}{q_n} 
+\end{gather}
+A vista si vede che la parte $\pp{B_\ell}{q_n} - \pp{B_n}{q_\ell}$ è antisimmetrica (scambiando gli indici si ottiene un'uguaglianza con il meno), $G$ sarebbe quindi lo jacobiano parziale di $B$, che è un campo di vettori, e quando si traspone si ottiene appunto $-G$, è quindi una matrice antisimmetrica che moltiplica la velocità. È della forma \emph{geoscopica} ed è il motivo per cui $\K_1=0$. Scrivendo l'espressione per l'n-esima equazione di Lagrange si vede che
+\begin{gather}
+	\sum_{\ell=1}^L A_{n \ell} \ddot q_\ell = - \sum_{\ell, m =1}^L \gamma_{\ell,m}^n \dot q_\ell \dot q_m + \sum_{\ell=1}^L G_{n \ell} \dot q_\ell + \\ - \sum_{\ell=1}^L \pp{A_{n \ell}}{t} \dot q_\ell - \pp{B_n}{t} - \pp{(U-\K_0)}{t}
+\end{gather}
+Dove $G_{n \ell} =\pp{B_\ell}{q_n} - \pp{B_n}{q_\ell}$ e $\gamma_{\ell m}^n = \left( \pp{A_{n \ell}}{q_m} - \frac{1}{2} \pp{A_{\ell m}}{q_m} \right)$, oppure in maniera più simmetrica si può scrivere:
+\begin{gather}
+	\gamma_n (\dot q) = \sum_{\ell, m =1}^L \left( \pp{A_{n \ell}}{q_m} - \frac{1}{2} \pp{A_{\ell m}}{q_m} \right) \dot q_\ell \dot q_m =\\= \frac{1}{2} \sum_{\ell , m =1 }^L \left( \pp{A_{n \ell}}{q_m} + \pp{A_{n m}}{q_\ell} - \pp{A_{\ell m}}{q_n} \right) \dot q_\ell \dot q_m
+	\end{gather}
+
+Passando ora  alla forma vettoriale si ha
+\begin{gather}
+	A \ddot q = - \gamma (\dot q) + G \dot q - \pp{A}{t} \dot q - \pp{B}{t} - \pp{(\U- \K_0)}{q}
+\end{gather}
+Siccome è $A$ è una matrice definita positiva si può scrivere
+\begin{gather}
+	\ddot q = A^{-1} \left[ - \gamma (\dot q) + G \dot q - \pp{A}{t} \dot q - \pp{B}{t} - \pp{(\U- \K_0)}{q} \right]
+\end{gather}
+Allora dalle equazione di Lagrange è esprimibile l'accelerazione e si possono appplicare tutti i teoremi noti delle equazioni differenziali ordinarie e si potrebbero anche riscrivere come un sistema del primo ordine con la solita sotituzione nello spazio delle fasi.
+
+\begin{osservazione}
+Se $\pp{X}{t} =0 $ e $\pp{U}{t}=0$ allora $
+\ddot q = A^{-1} \left[- \gamma (\dot q) - \pp{\U}{q} \right]	$. In questo caso la lagrangiana di partenza è
+\begin{equation}
+	\L = \frac{1}{2} \dot q \cdot A(q) \dot q - \U (q, \dot q)
+\end{equation}
+Un tale sistema è detto sistema meccanico naturale e conservativo (perchè $q$ non dipende da $t$).
+Per i moti geodetici (cioè \emph{liberi} da forze esterne) l'equazione è $\ddot q=A^{-1} \gamma (\dot q)$ e allora $\L=\K_2$.
+\end{osservazione}
+
+\subsection{Geodetiche}
+Come osservato l'equazione della lagrangiana per le geodetiche può essere espressa in forma
+\begin{equation}
+	\ddot q=A^{-1} \gamma (\dot q)
+\end{equation}
+Per componenti si ha
+\begin{gather}
+	\ddot q_k = \left( A^{-1} (q) \gamma ( \dot q)\right)_k = \sum_{n=1}^L (A^{-1})_{kn} \gamma_n (\dot q) = \\
+	= - \sum_{\ell ,m =1}^L 	\underbrace{\left[ \sum_{n=1}^L (A^{-1}(q))_{kn} \frac{1}{2}  \left( \pp{A_{n \ell}}{q_m} + \pp{A_{n m}}{q_\ell} - \pp{A_{\ell m}}{q_n} \right)\right]}_{\Gamma_{\ell m}^k (q)} \dot q_\ell \dot q_m=\\
+	\Rightarrow \boxed{ \ddot q_k = -\sum_{\ell, m=1}^L \Gamma_{\ell m}^k \dot q_\ell \dot q_m }
+\end{gather}
+Il coeffieciente $\Gamma ^k_{\ell m}$ è detto simbolo di Christoffel o simboli di connessione associati ad $A(q)$.
+
+\end{document}
