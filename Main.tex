@@ -1,0 +1,46 @@
+\documentclass[12pt]{book}
+\usepackage{subfiles}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\input{Preamble/Header}
+
+%\setBookLayout
+%\Book
+
+\begin{document}
+
+	\subfile{Preamble/Title}
+	
+	\newpage
+	\pagestyle{dispensa}
+	
+	\chapter{Meccanica newtoniana}
+	\renewcommand{\tem}{\ensuremath{\mathcal{N}}}
+	\subfile{Meccanica_newtoniana/1_Concetti_base.tex}
+	
+	\newpage
+	\subfile{Meccanica_newtoniana/2_Principi_di_Newton.tex}
+	
+	\newpage
+	\subfile{Meccanica_newtoniana/3_Forze_posizionali.tex}
+	
+	\newpage
+	\subfile{Meccanica_newtoniana/4_Problema_due_corpi}
+	
+	\newpage
+	\subfile{Meccanica_newtoniana/5_Analisi_qualitativa_della_dinamica.tex}
+	
+	\newpage
+	\chapter{Meccanica Lagrangiana}
+	\subfile{Meccanica_newtoniana/6_sintesi.tex}
+	
+	\newpage
+	\subfile{Meccanica_lagrangiana/7_forma_delle_eq_di_lagrange.tex}
+	
+	\newpage
+	\subfile{Meccanica_lagrangiana/8_equilibri_stabilita_piccole_oscillazioni.tex}
+
+     \newpage
+     \subfile{Meccanica_hamiltoniana/9_da_lagrange_a_hamilton.tex}
+	
+\end{document}
